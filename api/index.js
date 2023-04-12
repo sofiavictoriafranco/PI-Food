@@ -19,10 +19,14 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const {getAllDietsController} = require('./src/controllers/dietsControllers.js')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
+
+    getAllDietsController();
+
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
