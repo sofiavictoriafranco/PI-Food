@@ -1,4 +1,5 @@
 const { createRecipe } = require("../controllers/recipeControllers");
+const {Diets} = require('../db')
 
 
 // const getRecipesHandler = () => {
@@ -16,11 +17,16 @@ const { createRecipe } = require("../controllers/recipeControllers");
 
 const createRecipeHandler = async(req, res) => {
 
-    const {title, image, summary, healthScore, instructions} = req.body;
+    const {title, image, summary, healthScore, instructions, recipe_diets} = req.body;
 
     try{
 
         const newRecipe = await createRecipe(title, image, summary, healthScore, instructions)
+
+        let diet = await Diets.findAll({where: {title: recipe_diets}})
+        diet = diet.map(d => d.id)
+        await newRecipe.addDiet(diet)
+
         res.status(201).json(newRecipe)
 
     }catch(error){
