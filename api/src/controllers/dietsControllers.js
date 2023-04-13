@@ -19,8 +19,13 @@ const getAllDietsController = async() => {
             }
         }
 
+        
+
 
         const allDiets = diet.map(e => ({title: e}))
+        allDiets.push({
+            title: 'vegetarian'
+        })
         await Diets.bulkCreate(allDiets);
         console.log('Dietas cargadas en base de datos')
         
