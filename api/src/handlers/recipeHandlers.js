@@ -1,4 +1,4 @@
-const { createRecipe } = require("../controllers/recipeControllers");
+const { createRecipe, getRecipeById } = require("../controllers/recipeControllers");
 const {Diets} = require('../db')
 
 
@@ -38,7 +38,35 @@ const createRecipeHandler = async(req, res) => {
     }
 }
 
+const getRecipeByIdHandler = async(req, res) => {
+
+    const {idRecipe} = req.params
+
+    const source = isNaN(idRecipe)? 'bdd' : 'api'
+
+
+
+    try{
+
+        const recipe = await getRecipeById(idRecipe,source)
+        res.status(200).json(recipe)
+
+
+
+
+
+    }catch(error){
+
+        res.status(400).json({error: error.message})
+
+    }
+
+
+
+}
+
 
 module.exports = {
     createRecipeHandler,
+    getRecipeByIdHandler,
 }
