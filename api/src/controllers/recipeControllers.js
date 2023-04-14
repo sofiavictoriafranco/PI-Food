@@ -3,6 +3,44 @@ const axios = require('axios')
 require('dotenv').config()
 const {API_KEY} = process.env
 
+
+const getRecipeByName = async(name) => {
+
+
+
+
+
+}
+
+const getAllRecipes = async() => {
+
+  const recipeBDD = await Recipe.findAll()
+
+  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)).data.results
+
+  recipeApi = recipeApi.map( e => (
+    
+    {
+
+      id: e.id,
+      title: e.title,
+      image: e.image,
+      summary: e.summary,
+      healthScore: e.healthScore,
+      instructions: e.analyzedInstructions,
+      created: false,
+      
+
+    }
+  
+  ))
+
+
+
+  return [... recipeBDD, ... recipeApi]
+
+}
+
 const createRecipe = async(title, image, summary, healthScore, instructions) => {
 
     const newRecipe = await  Recipe.create({title, image, summary, healthScore, instructions})
@@ -53,4 +91,6 @@ const getRecipeById = async(idRecipe, source) => {
 module.exports = {
     createRecipe,
     getRecipeById,
+    getAllRecipes,
+    getRecipeByName,
 }

@@ -1,18 +1,23 @@
-const { createRecipe, getRecipeById } = require("../controllers/recipeControllers");
+const { createRecipe, getRecipeById, getRecipeByName, getAllRecipes } = require("../controllers/recipeControllers");
 const {Diets} = require('../db')
 
 
-// const getRecipesHandler = () => {
+const getRecipesHandler = async(req, res) => {
 
-//     const {name} = req.query
+    const {name} = req.query
 
-//     if( name !== undefined ){
+    try{
 
-//     }else {
-        
-//     }
+    const results = name? await getRecipeByName(name) : await getAllRecipes()
 
-// }
+    res.status(200).json(results)
+
+    }catch(error){
+
+        res.status(400).json({error: error.message})
+    }
+
+}
 
 
 const createRecipeHandler = async(req, res) => {
@@ -69,4 +74,5 @@ const getRecipeByIdHandler = async(req, res) => {
 module.exports = {
     createRecipeHandler,
     getRecipeByIdHandler,
+    getRecipesHandler,
 }
