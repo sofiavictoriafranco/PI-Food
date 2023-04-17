@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
 
     title: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
 
     image: {
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
     summary: {
 
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
 
     },
 

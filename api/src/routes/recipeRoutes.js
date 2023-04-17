@@ -6,7 +6,16 @@ const {createRecipeHandler, getRecipeByIdHandler, getRecipesHandler} = require('
 
 const router = Router();
 
-router.post('/', createRecipeHandler)
+const validate = (req,res,next) => {
+
+    const {title, summary} = req.body
+
+    if(!title || !summary) return res.status(400).json({error: 'Missing data'})
+
+    next();
+}
+
+router.post('/', validate, createRecipeHandler)
 router.get('/:idRecipe', getRecipeByIdHandler)
 router.get('/', getRecipesHandler)
 
