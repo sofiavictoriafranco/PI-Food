@@ -1,8 +1,8 @@
-
+import style from './Card.module.css'
 
 const Card = (props) => {
     return(
-        <div>
+        <div className={style.card}>
             
             <p>Title:{props.title}</p>
             <p>Diets:{props.diets}</p>
