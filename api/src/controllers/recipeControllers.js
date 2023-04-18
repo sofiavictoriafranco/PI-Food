@@ -46,7 +46,24 @@ const getRecipeByName = async(name) => {
 
 const getAllRecipes = async() => {
 
-  const recipeBDD = await Recipe.findAll()
+  let recipeBDD = await Recipe.findAll({
+    include: {
+      model: Diets,
+    }
+  })
+
+  recipeBDD = recipeBDD.map(e => {
+    return {
+      id: e.id,
+      title: e.title,
+      image: e.image,
+      summary: e.summary,
+      healthScore: e.healthScore,
+      instructions: e.instructions,
+      diets: e.diets.map(d => d.title),
+      create: e.create,
+    }
+  })
 
   let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&apiKey=${API_KEY}&addRecipeInformation=true`)).data.results
 
@@ -60,6 +77,7 @@ const getAllRecipes = async() => {
       summary: e.summary,
       healthScore: e.healthScore,
       instructions: e.analyzedInstructions,
+      diets: e.diets,
       created: false,
       
 
