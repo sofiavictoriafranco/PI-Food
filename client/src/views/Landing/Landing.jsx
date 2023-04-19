@@ -12,7 +12,7 @@ const Landing = () => {
         <div className={styles.landing}>
             <h1>WELCOME TO THE FOOD APP</h1>
             <Link to='/home'>
-            <button className={styles.myButton}>Click me!</button>
+            <button className={styles.myButton}>CLICK ME!</button>
             </Link>
         </div>
     </div>
