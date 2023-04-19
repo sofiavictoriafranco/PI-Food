@@ -6,7 +6,7 @@ const Form = () => {
     const [form, setForm] = useState({
         title:'',
         summary:'',
-        healthScore:'',
+        healthScore: 0,
         instructions:'',
 
     })
@@ -15,7 +15,7 @@ const Form = () => {
 
         title:'',
         summary:'',
-        healthScore:'',
+        healthScore: 0,
         instructions:'',
 
     })
@@ -28,86 +28,55 @@ const Form = () => {
         const property = event.target.name;
         const value = event.target.value;
 
-        validate({
-            ... form,
-            [property]:value,
-        })
+       
 
         setForm({
             ... form,
             [property]: value,
         })
 
+        setErrors(validate({
+            ... form,
+            [property]:value
+        }))
     }
 
-    const validate = () => {
+    const validate = (form) => {
 
-        if(typeof(form.title) === 'string' || form.title !== '' ){
+  const errors = {};
+ 
+  const titleRegex = /^[A-Za-z\s]+$/
 
-            setErrors({
-                ... errors,
-                title:'',
-            })
-        
-        }else{
-            setErrors({
-                ... errors,
-                title:'Hay un error en title',
-            })
-        }
+  if (!titleRegex.test(form.title)) {
+    errors.title = "title debe ser string";
+  }
 
-        if(typeof(form.summary) === 'string' || form.summary !== '' ){
+  if(form.title === ''){
+    errors.title = "no puede estar vacio"
+  }
+ 
+  
+  if (form.summary === '') {
+    errors.summary = "no puede estar vacio";
+  }
 
-            setErrors({
-                ... errors,
-                summary:'',
-            })
-        
-        }else{
-            setErrors({
-                ... errors,
-                summary:'Hay un error en summary',
-            })
-        }
-
-        if(typeof(form.instructions) === 'string' || form.instructions !== '' ){
-
-            setErrors({
-                ... errors,
-                instructions:'',
-            })
-        
-        }else{
-            setErrors({
-                ... errors,
-                instructions:'Hay un error en instructions',
-            })
-        }
-
-        if(typeof(form.healthScore) === 'number' || form.healthScore !== '' ){
-
-            setErrors({
-                ... errors,
-                healthScore:'',
-            })
-        
-        }else{
-            setErrors({
-                ... errors,
-                healthScore:'Hay un error en health score',
-            })
-        }
+  if (form.instructions ===  '') {
+    errors.instructions = "no puede estar vacio";
+  }
+  return errors;
 
 
     }
 
-
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault()
-        const response = axios.post('http://localhost:3001/recipes/', form)
-        .then(res => alert(res))
-        .catch(err => alert(err))
-        
+
+        try {
+            const response = await axios.post('http://localhost:3001/recipes/', form)
+            alert(response)
+        } catch (error) {
+            alert(error)
+        }
     }
 
 
@@ -130,7 +99,7 @@ const Form = () => {
 
             <div>
                 <label>Health Score </label>
-                <input type='text' value={form.healthScore} onChange={changeHandler} name="healthScore"/>
+                <input type='number' value={form.healthScore} onChange={changeHandler} name="healthScore"/>
                 {errors.healthScore && <span>{errors.healthScore}</span>}
                 
             </div>
