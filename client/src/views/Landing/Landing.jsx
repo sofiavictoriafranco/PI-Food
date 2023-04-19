@@ -8,11 +8,11 @@ const Landing = () => {
     return(
 
        
+        <div className={styles.landingfondo}>
         <div className={styles.landing}>
-        <div className={styles.container}>
-            <h1>PI FOODS</h1>
+            <h1>WELCOME TO THE FOOD APP</h1>
             <Link to='/home'>
-            <button>Welcome</button>
+            <button className={styles.myButton}>Click me!</button>
             </Link>
         </div>
     </div>
