@@ -1,18 +1,9 @@
 import Card from "../Card/Card";
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getAllRecipes } from "../../redux/actions"
 import style from './CardsContainer.module.css'
 
 
-const CardsContainer = () => {
+const CardsContainer = (props) => {
 
-    const dispatch = useDispatch()
-    const recipes = useSelector(state => state.recipes)
-
-    useEffect(()=>{
-        dispatch(getAllRecipes())
-    },[dispatch])
 
 
 
@@ -20,7 +11,7 @@ const CardsContainer = () => {
         <div className={style.container}>
 
             {
-                recipes && recipes.map( e => {
+                props.recipes && props.recipes.map( e => {
                     return <Card
 
                     

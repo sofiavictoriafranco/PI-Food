@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
 
-      <div>{location.pathname !== '/' && <NavBar/>}</div>
+      <div>{location.pathname !== '/' && location.pathname !== '/home' && <NavBar/>}</div>
 
     <Routes>
       <Route exact path="/" element={<Landing/>} />
