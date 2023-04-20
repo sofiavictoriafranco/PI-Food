@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import validate from "./validate"
 
 const Form = () => {
 
