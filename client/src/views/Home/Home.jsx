@@ -9,18 +9,27 @@ import NavBar from "../../components/NavBar/NavBar"
 function Home () {
 
     const dispatch = useDispatch()
-    const recipes = useSelector(state => state.recipes)
 
     useEffect(()=>{
         dispatch(getAllRecipes())
     },[dispatch])
 
+
+    const recipes = useSelector(state => state.recipes)
     const [filtered, setFiltered] = useState(recipes)
     const [searchString, setSearchString] = useState('')
 
+    useEffect(() => {
+        setFiltered(recipes)
+    }, [recipes])
+
+  
+
+  
+
     function handleChange (event)  {
         event.preventDefault()
-        setSearchString(event.target.value)
+        setSearchString(event.target.value.toLowerCase())
         
     }
 
@@ -29,10 +38,12 @@ function Home () {
         if (searchString.trim('') === '') {  
           setFiltered(recipes);
         } else {
-          const filtered = recipes.filter(recipe => recipe.title.includes(searchString));
+          const filtered = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchString));
           setFiltered(filtered);
         }
     }
+
+    console.log(filtered)
 
   
 
