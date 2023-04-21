@@ -91,9 +91,15 @@ const Form = () => {
     const submitHandler = async (event) => {
         event.preventDefault()
 
-       
+       try{
             const response = await axios.post('http://localhost:3001/recipes/', form)
             alert('Creado')
+
+       }catch(error){
+
+        alert('Todos los campos deben estar completos')
+
+       }
         
     }
 
