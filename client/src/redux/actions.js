@@ -24,6 +24,11 @@ export function getByName (name){
             type: GET_BY_NAME,
             payload: res.data
         }))
+        .catch(error => {
+            
+            alert('No existe esa receta');
+        });
+        
     }
 }
 

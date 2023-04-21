@@ -30,12 +30,14 @@ function Home () {
     }
 
     function handleSubmit (event){
+
         event.preventDefault();
         if (searchString.trim('') === '') {  
           
         } else {
           dispatch(getByName(searchString))
         }
+    
     }
 
    

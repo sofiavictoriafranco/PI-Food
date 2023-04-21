@@ -36,7 +36,15 @@ const getRecipeByName = async(name) => {
   
   ))
 
-  return [... recipeBDD, ... recipeApi]
+  const array = [... recipeBDD, ... recipeApi]
+
+  console.log(array)
+
+  if (array.length === 0) {
+    throw new Error('No existe');
+  } else {
+    return array;
+  }
 
 
 
