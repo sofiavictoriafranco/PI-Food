@@ -18,14 +18,8 @@ function Home () {
     const recipes = useSelector(state => state.recipes)
 
 
-    // const [filtered, setFiltered] = useState(recipes)
+   
     const [searchString, setSearchString] = useState('')
-
-    // useEffect(() => {
-    //     setFiltered(recipes)
-    // }, [recipes])
-
-  
 
   
 
