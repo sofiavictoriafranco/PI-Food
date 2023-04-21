@@ -23,52 +23,41 @@ const Form = () => {
 
     function validate(form) {
 
-        
+        const errors = {}
        
         const titleRegex = /^[A-Za-z\s]+$/
       
-        if (typeof form.title !== 'string') {
-            setErrors({
-              ... errors,
-              title: "title debe ser una cadena de texto"
-            }) 
-          } else if (!titleRegex.test(form.title)) {
-            setErrors({
-              ... errors,
-              title: "title debe contener solo letras y espacios"
-            }) 
-          } else {
-            setErrors({
-              ... errors,
-              title: '',
-            })
-          }
+      
+         if (!titleRegex.test(form.title) || form.title === '') {
+          
+              errors.title = "Debe contener solo letras y espacios, no puede estar vacio"
+           
+          } 
           
         
-        if (form.summary === '') {
-          setErrors({
-            ... errors,
-            summary: 'no puede estar vacio'
-          })
-        }else {
-            setErrors({
-                ... errors,
-                summary: '',
-            })
-        }
+        
+          if (!titleRegex.test(form.summary) || form.summary === '') {
+          
+            errors.summary = "Debe contener solo letras y espacios, no puede estar vacio"
+         
+        } 
+        
       
-        if (form.instructions ===  '') {
-          setErrors({
-            ... errors,
-            instructions: 'no puede estar vacio'
-          })
-        }else {
-            setErrors({
-                ... errors,
-                instructions: '',
-            })
+        
+        if (!titleRegex.test(form.instructions) || form.instructions === '') {
+          
+            errors.instructions = "Debe contener solo letras y espacios, no puede estar vacio"
+         
+        } 
+
+        if(isNaN(form.healthScore)){
+            errors.healthScore = 'Debe ser un numero'
         }
-       
+
+
+        
+
+        return errors
       
       
           }
@@ -90,10 +79,10 @@ const Form = () => {
             [property]: value,
         })
 
-        validate({
+        setErrors(validate({
             ... form,
             [property]:value
-        })
+        }))
 
        
     }
