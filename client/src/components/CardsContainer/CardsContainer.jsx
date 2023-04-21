@@ -14,7 +14,7 @@ const CardsContainer = (props) => {
                 props.recipes && props.recipes.map( e => {
                     return <Card
 
-                    
+                    id={e.id}
                     title= {e.title}
                     image= {e.image}
                     diets= {e.diets}

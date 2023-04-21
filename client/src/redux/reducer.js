@@ -21,10 +21,13 @@ function reducer(state= initialState, {type, payload}) {
                 recipes: payload
             }
 
-        // case GET_RECIPEID:
-        //     return{
+        case GET_RECIPEID:
+            return{
 
-        //     }
+                ... state,
+                recipes: payload
+
+            }
 
 
         default: 

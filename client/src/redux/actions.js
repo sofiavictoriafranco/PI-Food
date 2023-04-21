@@ -27,15 +27,15 @@ export function getByName (name){
     }
 }
 
-// export function getRecipeById(idRecipe) {
-//     return(dispatch) => {
-//         return axios(`http://localhost:3001/recipes/${idRecipe}`)
-//         .then(res => dispatch({
-//             type: GET_RECIPEID,
-//             payload: res.data
-//         }))
-//     }
-// }
+export function getRecipeById(idRecipe) {
+    return(dispatch) => {
+        return axios(`http://localhost:3001/recipes/${idRecipe}`)
+        .then(res => dispatch({
+            type: GET_RECIPEID,
+            payload: res.data
+        }))
+    }
+}
 
 // export const filterBySource = () => {
 //     dispatch({
