@@ -1,7 +1,7 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllRecipes } from "../../redux/actions"
+import { getAllRecipes, getByName } from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
 
 
@@ -14,14 +14,16 @@ function Home () {
         dispatch(getAllRecipes())
     },[dispatch])
 
-
+ 
     const recipes = useSelector(state => state.recipes)
-    const [filtered, setFiltered] = useState(recipes)
+
+
+    // const [filtered, setFiltered] = useState(recipes)
     const [searchString, setSearchString] = useState('')
 
-    useEffect(() => {
-        setFiltered(recipes)
-    }, [recipes])
+    // useEffect(() => {
+    //     setFiltered(recipes)
+    // }, [recipes])
 
   
 
@@ -36,14 +38,13 @@ function Home () {
     function handleSubmit (event){
         event.preventDefault();
         if (searchString.trim('') === '') {  
-          setFiltered(recipes);
+          
         } else {
-          const filtered = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchString));
-          setFiltered(filtered);
+          dispatch(getByName(searchString))
         }
     }
 
-    console.log(filtered)
+   
 
   
 
@@ -52,7 +53,7 @@ function Home () {
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
         <h1>Home</h1>
         <CardsContainer
-        recipes={filtered}
+        recipes={recipes}
         />
         </>
     )

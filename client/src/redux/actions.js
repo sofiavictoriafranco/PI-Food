@@ -1,6 +1,7 @@
 import axios from 'axios'
 export const GET_RECIPES = 'GET_RECIPES'
 export const GET_RECIPEID = 'GET_RECIPEID'
+export const GET_BY_NAME = 'GET_BY_NAME'
 
 
 export function getAllRecipes() {
@@ -13,6 +14,17 @@ export function getAllRecipes() {
         }))
     }
 
+}
+
+
+export function getByName (name){
+    return (dispatch) => {
+        return axios(`http://localhost:3001/recipes?name=${name}`)
+        .then(res => dispatch({
+            type: GET_BY_NAME,
+            payload: res.data
+        }))
+    }
 }
 
 // export function getRecipeById(idRecipe) {
