@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
-import validate from "./validate"
+
 
 const Form = () => {
 
@@ -21,6 +21,60 @@ const Form = () => {
 
     })
 
+    function validate(form) {
+
+        
+       
+        const titleRegex = /^[A-Za-z\s]+$/
+      
+        if (typeof form.title !== 'string') {
+            setErrors({
+              ... errors,
+              title: "title debe ser una cadena de texto"
+            }) 
+          } else if (!titleRegex.test(form.title)) {
+            setErrors({
+              ... errors,
+              title: "title debe contener solo letras y espacios"
+            }) 
+          } else {
+            setErrors({
+              ... errors,
+              title: '',
+            })
+          }
+          
+        
+        if (form.summary === '') {
+          setErrors({
+            ... errors,
+            summary: 'no puede estar vacio'
+          })
+        }else {
+            setErrors({
+                ... errors,
+                summary: '',
+            })
+        }
+      
+        if (form.instructions ===  '') {
+          setErrors({
+            ... errors,
+            instructions: 'no puede estar vacio'
+          })
+        }else {
+            setErrors({
+                ... errors,
+                instructions: '',
+            })
+        }
+       
+      
+      
+          }
+    
+    
+
 
 
 
@@ -29,17 +83,19 @@ const Form = () => {
         const property = event.target.name;
         const value = event.target.value;
 
-       
+        
 
         setForm({
             ... form,
             [property]: value,
         })
 
-        setErrors(validate({
+        validate({
             ... form,
             [property]:value
-        }))
+        })
+
+       
     }
 
 
@@ -50,7 +106,7 @@ const Form = () => {
             const response = await axios.post('http://localhost:3001/recipes/', form)
             alert(response)
         } catch (error) {
-            alert(error)
+            alert(error.message)
         }
     }
 
@@ -61,35 +117,36 @@ const Form = () => {
             <div>
                 <label>Title </label>
                 <input type='text' value={form.title} onChange={changeHandler} name="title"/>
-                {errors.title && <span>{errors.title}</span>}
+                <span>{errors.title}</span>
 
             </div>
 
             <div>
                 <label>Summary </label>
                 <input type='text' value={form.summary} onChange={changeHandler} name="summary"/>
-                {errors.summary && <span>{errors.summary}</span>}
+                <span>{errors.summary}</span>
                 
             </div>
 
             <div>
                 <label>Health Score </label>
                 <input type='number' value={form.healthScore} onChange={changeHandler} name="healthScore"/>
-                {errors.healthScore && <span>{errors.healthScore}</span>}
+                <span>{errors.healthScore}</span>
                 
             </div>
 
             <div>
                 <label>Instructions </label>
                 <input type='text' value={form.instructions} onChange={changeHandler} name="instructions"/>
-                {errors.instructions && <span>{errors.instructions}</span>}
+                <span>{errors.instructions}</span>
                 
             </div>
 
-           
+            <button type='submit'>CREATE</button>
 
-        <button type='submit'>SUBMIT</button>
+        
 
+      
 
         </form>
     )

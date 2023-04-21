@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
     healthScore: {
 
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: false,
 
 
     },
@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
     instructions: {
 
       type: DataTypes.STRING,
-      allowNull: true, 
+      allowNull: false, 
 
     },
 

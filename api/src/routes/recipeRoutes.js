@@ -8,9 +8,9 @@ const router = Router();
 
 const validate = (req,res,next) => {
 
-    const {title, summary} = req.body
+    const {title, summary, healthScore, instructions} = req.body
 
-    if(!title || !summary) return res.status(400).json({error: 'Missing data'})
+    if(!title || !summary || !healthScore || !instructions) return res.status(400).json({error: 'Missing data'})
 
     next();
 }
