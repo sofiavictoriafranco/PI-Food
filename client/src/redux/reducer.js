@@ -2,7 +2,8 @@ import {GET_BY_NAME, GET_RECIPEID, GET_RECIPES} from "./actions"
 
 const initialState = {
     recipes:[],
-    diets:[]
+    diets:[],
+    detail: {},
 }
 
 function reducer(state= initialState, {type, payload}) {
@@ -25,7 +26,7 @@ function reducer(state= initialState, {type, payload}) {
             return{
 
                 ... state,
-                recipes: payload
+                detail: payload
 
             }
 
