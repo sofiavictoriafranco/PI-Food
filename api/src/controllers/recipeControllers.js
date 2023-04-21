@@ -38,7 +38,7 @@ const getRecipeByName = async(name) => {
 
   const array = [... recipeBDD, ... recipeApi]
 
-  console.log(array)
+  
 
   if (array.length === 0) {
     throw new Error('No existe');
@@ -124,7 +124,13 @@ const getRecipeById = async(idRecipe, source) => {
 
     }
 
-    return recipe
+    
+
+    if(recipe === undefined){
+      throw new Error('No existe')
+    } else{
+      return recipe
+    }
 
 }else{
    let recipe = await Recipe.findByPk(idRecipe, { include: {
@@ -135,7 +141,12 @@ const getRecipeById = async(idRecipe, source) => {
         },
       } })
 
-      return recipe
+      if(recipe === null){
+        throw new Error('No existe')
+
+      }else {
+        return recipe
+      }
 
     }
 

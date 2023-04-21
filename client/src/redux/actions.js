@@ -39,6 +39,10 @@ export function getRecipeById(idRecipe) {
             type: GET_RECIPEID,
             payload: res.data
         }))
+        .catch(error => {
+            
+            alert('No existe ese ID');
+        });
     }
 }
 
