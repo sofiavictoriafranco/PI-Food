@@ -91,12 +91,10 @@ const Form = () => {
     const submitHandler = async (event) => {
         event.preventDefault()
 
-        try {
+       
             const response = await axios.post('http://localhost:3001/recipes/', form)
-            alert(response)
-        } catch (error) {
-            alert(error.message)
-        }
+            alert('Creado')
+        
     }
 
 
