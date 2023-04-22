@@ -4,7 +4,7 @@ const initialState = {
     recipes:[],
     diets:[],
     detail: {},
-    recipesfilter: [],
+    filtered: [],
 }
 
 function reducer(state= initialState, {type, payload}) {
@@ -50,17 +50,24 @@ function reducer(state= initialState, {type, payload}) {
 
         const filtered = state.recipes.filter((r) => {
             
-            if(payload === 'BDD' && isNaN(r.id)){
+            if(payload === 'Api' && !(isNaN(r.id))){
               return true;
-            if(payload === 'Api' && /^[0-9]+$/.test(r.id)){
+            }
+
+              if(payload === 'BDD' && isNaN(r.id)){
                 return true;
-            }
-            }
-        })
+              }
+           
+          })
+
+          if(filtered.length > 0){
           return {
             ...state,
-            recipes: filtered
+            filtered: filtered
           }
+        }else{
+            alert('No hay recetas con ese origen')
+        }
 
 
 
@@ -72,7 +79,7 @@ function reducer(state= initialState, {type, payload}) {
             if(filteredDiets.length > 0){
             return {
               ...state,
-              recipes: filteredDiets,
+              filtered: filteredDiets,
             };
         }else{
              alert('No hay recetas con esa dieta')

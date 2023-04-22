@@ -66,7 +66,7 @@ function Home () {
 
     }
 
-   console.log(recipes)
+    const filtered = useSelector(state => state.filtered)
 
   
 
@@ -90,7 +90,7 @@ function Home () {
         </select>
         </div>
         <CardsContainer
-        recipes={recipes}
+        recipes={filtered.length > 0? filtered : recipes}
         />
         </>
     )
