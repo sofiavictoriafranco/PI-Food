@@ -22,13 +22,13 @@ const getRecipesHandler = async(req, res) => {
 
 const createRecipeHandler = async(req, res) => {
 
-    const {title, image, summary, healthScore, instructions, recipe_diets} = req.body;
+    const {title, image, summary, healthScore, instructions, recipeDiets} = req.body;
 
     try{
 
-        const newRecipe = await createRecipe(title, image, summary, healthScore, instructions)
+        const newRecipe = await createRecipe(title, image, summary, healthScore, instructions, recipeDiets)
 
-        let diet = await Diets.findAll({where: {title: recipe_diets}})
+        let diet = await Diets.findAll({where: {title: recipeDiets[0]}})
         diet = diet.map(d => d.id)
         await newRecipe.addDiet(diet)
 

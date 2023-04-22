@@ -53,6 +53,11 @@ module.exports = (sequelize) => {
 
     },
 
+    recipeDiets: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:true,
+    },
+
 
     created: {
       type: DataTypes.BOOLEAN,

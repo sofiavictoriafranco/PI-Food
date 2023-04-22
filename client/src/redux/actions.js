@@ -2,6 +2,8 @@ import axios from 'axios'
 export const GET_RECIPES = 'GET_RECIPES'
 export const GET_RECIPEID = 'GET_RECIPEID'
 export const GET_BY_NAME = 'GET_BY_NAME'
+export const GET_DIETS = 'GET_DIETS'
+export const CREATE_RECIPE = 'CREATE_RECIPE'
 
 
 export function getAllRecipes() {
@@ -12,6 +14,10 @@ export function getAllRecipes() {
             type: GET_RECIPES,
             payload: res.data
         }))
+        .catch(error => {
+            
+            alert('No se encontraron recetas');
+        });
     }
 
 }
@@ -45,6 +51,45 @@ export function getRecipeById(idRecipe) {
         });
     }
 }
+
+
+
+
+  export const getDiets = () => {
+    return(dispatch) => {
+        return axios("http://localhost:3001/diets")
+        .then(res => dispatch({
+            type: GET_DIETS,
+            payload :res.data
+
+        }))
+        .catch(error => {
+            
+            alert('No se encontraron dietas');
+        });
+    }
+  }
+
+
+  export const createRecipe = (form) => {
+
+    return(dispatch) => {
+        return axios.post('http://localhost:3001/recipes/', form)
+        .then(res => dispatch({
+            type: CREATE_RECIPE,
+            payload :res.data
+
+        }))
+        .catch(error => {
+            
+            alert('No se puede crear la receta');
+        });
+    }
+
+  }
+
+
+
 
 // export const filterBySource = () => {
 //     dispatch({

@@ -1,14 +1,33 @@
-import axios from "axios"
-import { useState } from "react"
+
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { createRecipe } from "../../redux/actions"
+import { getDiets } from "../../redux/actions"
+
 
 
 const Form = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getDiets())
+    },[dispatch])
+
+
+    const diets = useSelector(state => state.diets)
+
+
+    const [diet, setDiet] = useState([])
+
+    
 
     const [form, setForm] = useState({
         title:'',
         summary:'',
         healthScore: 0,
         instructions:'',
+        recipeDiets:[]
 
     })
 
@@ -18,6 +37,7 @@ const Form = () => {
         summary:'',
         healthScore: 0,
         instructions:'',
+        recipeDiets: []
 
     })
 
@@ -61,6 +81,9 @@ const Form = () => {
       
       
           }
+
+
+
     
     
 
@@ -88,20 +111,46 @@ const Form = () => {
     }
 
 
+    const mapDiets = () => {
+        const filtered = diets.filter((d) => !diet.includes(d.title));
+        return filtered.map((d, i) => {
+          return (
+              <option value={d.title} key={i}>
+              {d.title}
+            </option>
+          );
+        });
+      };
+
+      const dietHandler = (event) => {
+        if(event.target.value){
+          setDiet([...diet, event.target.value]);
+          setForm({...form, recipeDiets: [...diet, event.target.value]})
+         
+          
+        }
+      };
+
+
     const submitHandler = async (event) => {
         event.preventDefault()
 
-       try{
-            const response = await axios.post('http://localhost:3001/recipes/', form)
-            alert('Creado')
-
-       }catch(error){
-
-        alert('Todos los campos deben estar completos')
-
-       }
+        if (
+            !errors.title &&
+            !errors.summary &&
+            !errors.healthScore &&
+            !errors.instructions &&
+            diet.length >= 1
+            ) {
+              dispatch(createRecipe(form));
+              alert('Receta creada')
+            }else{
+              alert('Los campos deben ser correctos')
+            }
         
     }
+
+   
 
 
     return(
@@ -133,6 +182,17 @@ const Form = () => {
                 <input type='text' value={form.instructions} onChange={changeHandler} name="instructions"/>
                 <span>{errors.instructions}</span>
                 
+            </div>
+
+            <div>
+
+
+        <label>Diets: </label>
+        <select onChange={dietHandler} name="diets">
+          {mapDiets()}
+        </select >
+        
+        
             </div>
 
             <button type='submit'>CREATE</button>

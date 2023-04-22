@@ -99,9 +99,9 @@ const getAllRecipes = async() => {
 
 }
 
-const createRecipe = async(title, image, summary, healthScore, instructions) => {
+const createRecipe = async(title, image, summary, healthScore, instructions, recipeDiets) => {
 
-    const newRecipe = await  Recipe.create({title, image, summary, healthScore, instructions})
+    const newRecipe = await  Recipe.create({title, image, summary, healthScore, instructions, recipeDiets})
     return newRecipe
 
 
