@@ -69,7 +69,7 @@ const getAllRecipes = async() => {
       healthScore: e.healthScore,
       instructions: e.instructions,
       diets: e.diets.map(d => d.title),
-      create: e.create,
+      create: true,
     }
   })
 

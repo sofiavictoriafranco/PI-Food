@@ -38,7 +38,7 @@ const Detail = () => {
             <h2>Summary: {detail.summary}</h2>
             <h2>Health Score: {detail.healthScore}</h2>
             <h2>Instructions: {detail.instructions}</h2>
-            <h2>diets: {detail.recipeDiets}</h2>
+            <h2>diets: {detail.diets}</h2>
             <img src={detail.image} alt={detail.title}/>
 
 

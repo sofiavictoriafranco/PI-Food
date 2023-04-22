@@ -1,10 +1,10 @@
-import {CREATE_RECIPE, GET_BY_NAME, GET_DIETS, GET_RECIPEID, GET_RECIPES} from "./actions"
+import {CREATE_RECIPE, FILTER_BY_DIETS, FILTER_BY_ORIGIN, GET_BY_NAME, GET_DIETS, GET_RECIPEID, GET_RECIPES} from "./actions"
 
 const initialState = {
     recipes:[],
     diets:[],
     detail: {},
-    recipesBDD: [],
+    recipesfilter: [],
 }
 
 function reducer(state= initialState, {type, payload}) {
@@ -42,10 +42,39 @@ function reducer(state= initialState, {type, payload}) {
             return{
                 ... state,
                 recipes: [... state.recipes, payload],
-                recipesBDD: [... state.recipesBDD, payload]
+               
 
             }
 
+        case FILTER_BY_ORIGIN:
+
+        const filtered = state.recipes.filter((r) => {
+            
+            if(payload === 'Api' && r.created === false){
+              return true;
+            }else if(payload === 'BDD' && r.created === true){
+              return true;
+            }else{
+              return false;
+            }
+          })
+          return {
+            ...state,
+            recipes: filtered
+          }
+
+
+
+          case FILTER_BY_DIETS:
+            const filteredDiets = state.recipes.filter(
+              (r) => r.diets.includes(payload)
+            );
+            return {
+              ...state,
+              recipes: filteredDiets,
+            };
+
+           
 
         default: 
         return state    

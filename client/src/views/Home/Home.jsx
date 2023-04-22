@@ -1,7 +1,7 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllRecipes, getByName } from "../../redux/actions"
+import { filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets } from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
 
 
@@ -14,8 +14,14 @@ function Home () {
         dispatch(getAllRecipes())
     },[dispatch])
 
+    useEffect(()=>{
+        dispatch(getDiets())
+    },[dispatch])
+
+
  
     const recipes = useSelector(state => state.recipes)
+    const diets = useSelector(state => state.diets)
 
 
    
@@ -40,6 +46,26 @@ function Home () {
     
     }
 
+    const filter = (event) => {
+
+        const name = event.target.name
+        const value = event.target.value
+
+        if(name === 'origin'){
+
+            dispatch(filterByOrigin(value))
+
+        }else{
+
+            dispatch(filterByDiets(value))
+
+
+
+        }
+
+
+    }
+
    
 
   
@@ -48,6 +74,21 @@ function Home () {
         <>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
         <h1>Home</h1>
+        <div>
+        <select name="origin" onChange={filter}>
+          <option value="Api">Api</option>
+          <option value="BDD">BDD</option>
+        </select>
+        <select name="diets" onChange={filter}>
+          {diets?.map((d) => {
+            return (
+              <option value={d.title} key={d.id}>
+                {d.title}
+              </option>
+            );
+          })}
+        </select>
+        </div>
         <CardsContainer
         recipes={recipes}
         />

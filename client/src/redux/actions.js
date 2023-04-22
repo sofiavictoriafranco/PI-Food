@@ -4,6 +4,8 @@ export const GET_RECIPEID = 'GET_RECIPEID'
 export const GET_BY_NAME = 'GET_BY_NAME'
 export const GET_DIETS = 'GET_DIETS'
 export const CREATE_RECIPE = 'CREATE_RECIPE'
+export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
+export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
 
 
 export function getAllRecipes() {
@@ -89,11 +91,21 @@ export function getRecipeById(idRecipe) {
   }
 
 
+  export const filterByOrigin = (value) => {
+    return {
+      type: FILTER_BY_ORIGIN,
+      payload: value,
+    };
+  };
 
 
-// export const filterBySource = () => {
-//     dispatch({
-//         type: 'FILTER_BY_SOURCE',
+  export const filterByDiets = (value) => {
+    return {
+      type: FILTER_BY_DIETS,
+      payload: value,
+    };
+  };
 
-//     })
-// }
+
+
+
