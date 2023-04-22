@@ -69,10 +69,18 @@ function reducer(state= initialState, {type, payload}) {
             const filteredDiets = state.recipes.filter(
               (r) => r.diets.includes(payload)
             );
+
+            if(filteredDiets.length > 0){
             return {
               ...state,
               recipes: filteredDiets,
             };
+        }else{
+             alert('No hay recetas con esa dieta')
+             return{
+                ... state
+             }
+        }
 
            
 
