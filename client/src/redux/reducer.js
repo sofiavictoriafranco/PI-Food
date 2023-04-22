@@ -50,14 +50,13 @@ function reducer(state= initialState, {type, payload}) {
 
         const filtered = state.recipes.filter((r) => {
             
-            if(payload === 'Api' && r.created === false){
+            if(payload === 'BDD' && isNaN(r.id)){
               return true;
-            }else if(payload === 'BDD' && r.created === true){
-              return true;
-            }else{
-              return false;
+            if(payload === 'Api' && /^[0-9]+$/.test(r.id)){
+                return true;
             }
-          })
+            }
+        })
           return {
             ...state,
             recipes: filtered

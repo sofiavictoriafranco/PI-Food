@@ -66,7 +66,7 @@ function Home () {
 
     }
 
-   
+   console.log(recipes)
 
   
 
