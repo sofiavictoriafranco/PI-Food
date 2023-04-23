@@ -6,6 +6,8 @@ export const GET_DIETS = 'GET_DIETS'
 export const CREATE_RECIPE = 'CREATE_RECIPE'
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
+export const ORDER_BY_ALPHABET = 'ORDER_BY_ALPHABET'
+export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE'
 
 
 export function getAllRecipes() {
@@ -105,6 +107,24 @@ export function getRecipeById(idRecipe) {
       payload: value,
     };
   };
+
+  export const orderByAlphabet = (value) => {
+    return {
+      type: ORDER_BY_ALPHABET,
+      payload: value,
+    };
+  };
+
+  export const orderByHealthScore = (value) => {
+    return {
+      type: ORDER_BY_HEALTHSCORE,
+      payload: value,
+    };
+  };
+
+
+
+
 
 
 

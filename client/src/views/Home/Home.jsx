@@ -1,7 +1,7 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets } from "../../redux/actions"
+import { ORDER_BY_HEALTHSCORE, filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore } from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
 
 
@@ -22,6 +22,9 @@ function Home () {
  
     const recipes = useSelector(state => state.recipes)
     const diets = useSelector(state => state.diets)
+    const filtered = useSelector(state => state.filtered)
+
+    
 
 
    
@@ -66,7 +69,27 @@ function Home () {
 
     }
 
-    const filtered = useSelector(state => state.filtered)
+    const order = (event) => {
+
+      const name = event.target.name
+      const value = event.target.value
+
+
+      if(name === 'Alfabetico'){
+
+        dispatch(orderByAlphabet(value))
+
+    }else{
+
+        dispatch(orderByHealthScore(value))
+
+
+
+    }
+
+    }
+
+    
 
   
 
@@ -88,6 +111,17 @@ function Home () {
             );
           })}
         </select>
+
+        
+        <select name= "Alfabetico" onChange={order}>
+          <option value="A-Z">A-Z</option>
+          <option value="Z-A">Z-A</option>
+        </select>
+        <select name= "HealthScore" onChange={order}>
+          <option value="Ascendente">Ascendente</option>
+          <option value="Descendente">Descendente</option>
+        </select>
+
         </div>
         <CardsContainer
         recipes={filtered.length > 0? filtered : recipes}
