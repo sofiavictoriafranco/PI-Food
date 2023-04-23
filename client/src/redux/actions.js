@@ -8,6 +8,7 @@ export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN'
 export const FILTER_BY_DIETS = 'FILTER_BY_DIETS'
 export const ORDER_BY_ALPHABET = 'ORDER_BY_ALPHABET'
 export const ORDER_BY_HEALTHSCORE = 'ORDER_BY_HEALTHSCORE'
+export const GO_BACK = 'GO_BACK'
 
 
 export function getAllRecipes() {
@@ -122,6 +123,7 @@ export function getRecipeById(idRecipe) {
     };
   };
 
+ 
 
 
 

@@ -1,7 +1,7 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { ORDER_BY_HEALTHSCORE, filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore } from "../../redux/actions"
+import { ORDER_BY_HEALTHSCORE, filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore, goBack } from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
 
 
@@ -9,6 +9,9 @@ import NavBar from "../../components/NavBar/NavBar"
 function Home () {
 
     const dispatch = useDispatch()
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recipesPerPage] = useState(9);
 
     useEffect(()=>{
         dispatch(getAllRecipes())
@@ -29,6 +32,7 @@ function Home () {
 
    
     const [searchString, setSearchString] = useState('')
+    
 
   
 
@@ -89,6 +93,40 @@ function Home () {
 
     }
 
+    // Get current recipes
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+  const currentRecipes = filtered.length > 0 ? filtered : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Calculate page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+
+  function Pagination({ pageNumbers, paginate }) {
+    return (
+      <nav>
+        <ul className="pagination">
+          {pageNumbers.map((number) => (
+            <li key={number} className="page-item">
+              <button onClick={() => paginate(number)} className="page-link">
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
+  }
+
+    
+
+
     
 
   
@@ -123,9 +161,14 @@ function Home () {
         </select>
 
         </div>
-        <CardsContainer
-        recipes={filtered.length > 0? filtered : recipes}
-        />
+
+
+        <CardsContainer recipes={currentRecipes} />
+      <Pagination pageNumbers={pageNumbers} paginate={paginate} />
+
+
+        
+
         </>
     )
        

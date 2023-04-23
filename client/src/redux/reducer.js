@@ -1,4 +1,4 @@
-import {CREATE_RECIPE, FILTER_BY_DIETS, FILTER_BY_ORIGIN, GET_BY_NAME, GET_DIETS, GET_RECIPEID, GET_RECIPES, ORDER_BY_ALPHABET, ORDER_BY_HEALTHSCORE} from "./actions"
+import {CREATE_RECIPE, FILTER_BY_DIETS, FILTER_BY_ORIGIN, GET_BY_NAME, GET_DIETS, GET_RECIPEID, GET_RECIPES, GO_BACK, ORDER_BY_ALPHABET, ORDER_BY_HEALTHSCORE} from "./actions"
 
 const initialState = {
     recipes:[],
@@ -114,6 +114,9 @@ function reducer(state= initialState, {type, payload}) {
                       ? state.filtered.sort((a, b) => (a.healthScore < b.healthScore ? -1 : 1))
                       : state.filtered.sort((a, b) => (a.healthScore > b.healthScore ? -1 : 1)),
                 };
+
+      
+       
 
 
 
