@@ -141,12 +141,14 @@ function Home () {
         <div>
         <Pagination pageNumbers={pageNumbers} paginate={paginate} />
         </div>
-        <div>
-        <select name="origin" onChange={filter}>
+        <div className={styles.select}>
+        
+        <select  id='origin-select' name="origin" onChange={filter} className={styles.options} >
+        <option value="default" selected>Selecciona un origen</option>
           <option value="Api">Api</option>
           <option value="BDD">BDD</option>
         </select>
-        <select name="diets" onChange={filter}>
+        <select name="diets" onChange={filter} className={styles.options}>
           {diets?.map((d) => {
             return (
               <option value={d.title} key={d.id}>
@@ -157,16 +159,16 @@ function Home () {
         </select>
 
         
-        <select name= "Alfabetico" onChange={order}>
+        <select name= "Alfabetico" onChange={order} className={styles.options}>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </select>
-        <select name= "HealthScore" onChange={order}>
+        <select name= "HealthScore" onChange={order} className={styles.options}>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
         </select>
 
-        <button onClick={handleOriginChange}>Go Back</button>
+        <button onClick={handleOriginChange} >Go Back</button>
 
 
 
