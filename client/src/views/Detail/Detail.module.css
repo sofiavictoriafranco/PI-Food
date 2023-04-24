@@ -1,0 +1,19 @@
+.div{
+   
+    background-color:  #daa494 ;
+    opacity: 0.8;
+    justify-content: center;
+    top: 0%;
+    left: 0%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    flex-direction: row;
+    width: 80%;
+    height: 80%;
+    text-align: center;
+    box-shadow: 0 0 15px rgb(216, 189, 189);
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 12px;
+    color: #4b332c;
+}

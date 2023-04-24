@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import CardsContainer from "../../components/CardsContainer/CardsContainer"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import style from './Detail.module.css'
 
 const Detail = () => {
 
@@ -31,7 +32,7 @@ const Detail = () => {
 
 
     return(
-        <div>
+        <div className={style.div}>
 
             <h1>Title: {detail.title}</h1>
             <h2>Id: {detail.id}</h2>
