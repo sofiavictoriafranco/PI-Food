@@ -1,14 +1,17 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { ORDER_BY_HEALTHSCORE, filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore, goBack } from "../../redux/actions"
+import { filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore} from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
+
 
 
 
 function Home () {
 
     const dispatch = useDispatch()
+    
+    
 
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage] = useState(9);
@@ -25,7 +28,7 @@ function Home () {
  
     const recipes = useSelector(state => state.recipes)
     const diets = useSelector(state => state.diets)
-    const filtered = useSelector(state => state.filtered)
+    let filtered = useSelector(state => state.filtered)
 
     
 
@@ -58,6 +61,8 @@ function Home () {
         const name = event.target.name
         const value = event.target.value
 
+       
+
         if(name === 'origin'){
 
             dispatch(filterByOrigin(value))
@@ -77,6 +82,8 @@ function Home () {
 
       const name = event.target.name
       const value = event.target.value
+
+      
 
 
       if(name === 'Alfabetico'){
@@ -124,6 +131,14 @@ function Home () {
     );
   }
 
+
+ 
+
+  function handleOriginChange(event) {
+    // Recarga la página actual en la misma ruta
+    const { location } = window;
+    location.reload();
+  }
     
 
 
@@ -160,16 +175,30 @@ function Home () {
           <option value="Descendente">Descendente</option>
         </select>
 
+        <button onClick={handleOriginChange}>Volver</button>
+
+
+
+       
+
         </div>
+
+       
 
 
         <CardsContainer recipes={currentRecipes} />
       <Pagination pageNumbers={pageNumbers} paginate={paginate} />
 
+     
+    
+
+
+    </>
+
 
         
 
-        </>
+      
     )
        
     
