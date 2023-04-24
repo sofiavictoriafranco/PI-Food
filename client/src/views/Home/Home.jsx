@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore} from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
+import Pagination from "../../components/Paginado/Pagination"
 
 
 
@@ -115,21 +116,7 @@ function Home () {
   }
 
 
-  function Pagination({ pageNumbers, paginate }) {
-    return (
-      <nav>
-        <ul className="pagination">
-          {pageNumbers.map((number) => (
-            <li key={number} className="page-item">
-              <button onClick={() => paginate(number)} className="page-link">
-                {number}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    );
-  }
+  
 
 
  
