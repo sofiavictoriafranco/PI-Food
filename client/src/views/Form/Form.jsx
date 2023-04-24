@@ -145,7 +145,7 @@ const Form = () => {
               dispatch(createRecipe(form));
               alert('Receta creada')
             }else{
-              alert('Los campos deben ser correctos')
+              alert('Los campos deben ser correctos y estar completos')
             }
         
     }
