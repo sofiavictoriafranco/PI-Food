@@ -7,5 +7,17 @@
     background-color: #ac7564;
     opacity: 0.8;
     justify-content: center;
+    text-align: center;
 }
+
+.myButton {
+    
+    color: white;
+    
+    
+    cursor: pointer;
+    
+    text-decoration: none; 
+  }
+
 
