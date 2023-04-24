@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createRecipe } from "../../redux/actions"
 import { getDiets } from "../../redux/actions"
+import style from './Form.module.css'
 
 
 
@@ -154,41 +155,44 @@ const Form = () => {
 
 
     return(
-        <form onSubmit={submitHandler}>  
+        <div className={style.div}>
+        <form onSubmit={submitHandler} >  
 
-            <div>
-                <label>Title </label>
+        <div className={style.form}>
+
+            <div className={style.div2}>
+                <label className={style.label}>Title </label>
                 <input type='text' value={form.title} onChange={changeHandler} name="title"/>
                 <span>{errors.title}</span>
 
             </div>
 
-            <div>
-                <label>Summary </label>
+            <div className={style.div2}>
+                <label className={style.label} >Summary </label>
                 <input type='text' value={form.summary} onChange={changeHandler} name="summary"/>
                 <span>{errors.summary}</span>
                 
             </div>
 
-            <div>
-                <label>Health Score </label>
+            <div className={style.div2}>
+                <label className={style.label} >Health Score </label>
                 <input type='number' value={form.healthScore} onChange={changeHandler} name="healthScore"/>
                 <span>{errors.healthScore}</span>
                 
             </div>
 
-            <div>
-                <label>Instructions </label>
+            <div className={style.div2}>
+                <label className={style.label} >Instructions </label>
                 <input type='text' value={form.instructions} onChange={changeHandler} name="instructions"/>
                 <span>{errors.instructions}</span>
-                
+                 
             </div>
 
             <div>
 
 
-        <label>Diets: </label>
-        <select onChange={dietHandler} name="diets">
+        <label  >Diets: </label>
+        <select  onChange={dietHandler} name="diets">
           {mapDiets()}
         </select >
         
@@ -197,11 +201,14 @@ const Form = () => {
 
             <button type='submit'>CREATE</button>
 
+            </div>
+
         
 
       
 
         </form>
+        </div>
     )
 }
 
