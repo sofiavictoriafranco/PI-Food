@@ -20,7 +20,7 @@ function reducer(state= initialState, {type, payload}) {
         case GET_BY_NAME:
             return {
                 ... state,
-                recipes: payload
+                filtered: payload
             }
 
         case GET_RECIPEID:
