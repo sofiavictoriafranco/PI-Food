@@ -7,12 +7,12 @@ const NavBar = (props) => {
     return(
         <div className={style.mainContainer}>
 
-            <Link to= '/home'>Home</Link>
-            <Link to= '/create'>Form</Link>
+            <Link to= '/home' className={style.myButton}>Home</Link>
+            <Link to= '/create' className={style.myButton}>Form</Link>
 
             <form onChange={props.handleChange}>
                 <input placeholder='Busqueda' type='search'/>
-                <button type='submit' onClick={props.handleSubmit}>Buscar</button>
+                <button className={style.myButton} type='submit' onClick={props.handleSubmit}>Buscar</button>
             </form>
 
         

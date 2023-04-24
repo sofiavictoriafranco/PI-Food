@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { filterByDiets, filterByOrigin, getAllRecipes, getByName, getDiets, orderByAlphabet, orderByHealthScore} from "../../redux/actions"
 import NavBar from "../../components/NavBar/NavBar"
 import Pagination from "../../components/Paginado/Pagination"
+import styles from './Home.module.css'
 
 
 
@@ -134,9 +135,12 @@ function Home () {
   
 
     return(
-        <>
+        <div className={styles.home}>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
-        <h1>Home</h1>
+        <h1 className={styles.title}>Home</h1>
+        <div>
+        <Pagination pageNumbers={pageNumbers} paginate={paginate} />
+        </div>
         <div>
         <select name="origin" onChange={filter}>
           <option value="Api">Api</option>
@@ -174,13 +178,13 @@ function Home () {
 
 
         <CardsContainer recipes={currentRecipes} />
-      <Pagination pageNumbers={pageNumbers} paginate={paginate} />
+      
 
      
     
 
 
-    </>
+    </div>
 
 
         

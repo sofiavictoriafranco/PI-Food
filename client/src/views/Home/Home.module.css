@@ -1,0 +1,16 @@
+.home{
+    background-color:  #e49a83;
+}
+
+.title{
+  
+    font-size: 2.5em; /* tamaño de fuente */
+    font-weight: bold; /* grosor de fuente */
+    text-align: center; /* alineación del texto */
+    color: #4b332c; /* color del texto */
+    margin-top: 30px; /* margen superior */
+    margin-bottom: 20px; /* margen inferior */
+    text-transform: uppercase; /* transformar texto a mayúsculas */
+      
+}
+

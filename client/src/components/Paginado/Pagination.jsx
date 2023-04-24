@@ -1,9 +1,12 @@
+import style from './Pagination.module.css'
+
+
 function Pagination({ pageNumbers, paginate }) {
     return (
       <nav>
-        <ul className="pagination">
+        <ul className={style.pagination}>
           {pageNumbers.map((number) => (
-            <li key={number} className="page-item">
+            <li key={number} className={style.li}>
               <button onClick={() => paginate(number)} className="page-link">
                 {number}
               </button>
