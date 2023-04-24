@@ -199,7 +199,7 @@ const Form = () => {
         
             </div>
 
-            <button type='submit'>CREATE</button>
+            <button className={style.myButton} type='submit'>CREATE</button>
 
             </div>
 

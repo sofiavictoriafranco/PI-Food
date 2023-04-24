@@ -38,3 +38,20 @@
     text-align: center;
    
   }
+
+  .myButton{
+    
+        background-color: #80574a;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        min-height: 20px;
+        text-decoration: none; 
+        text-align: center;
+        opacity: 0.8;
+      
+    
+  }
