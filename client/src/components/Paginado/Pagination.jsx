@@ -7,7 +7,7 @@ function Pagination({ pageNumbers, paginate }) {
         <ul className={style.pagination}>
           {pageNumbers.map((number) => (
             <li key={number} className={style.li}>
-              <button onClick={() => paginate(number)} className="page-link">
+              <button onClick={() => paginate(number)} className={style.myButton}>
                 {number}
               </button>
             </li>

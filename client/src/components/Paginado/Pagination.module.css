@@ -6,7 +6,17 @@
   }
 
 .li{
-    margin: 30px;
+    margin: 25px;
+    margin-left: 10px;
+}
+
+.myButton{
+    background-color: #ac7564;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
   
   
