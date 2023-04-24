@@ -166,7 +166,7 @@ function Home () {
           <option value="Descendente">Descendente</option>
         </select>
 
-        <button onClick={handleOriginChange}>Volver</button>
+        <button onClick={handleOriginChange}>Go Back</button>
 
 
 
