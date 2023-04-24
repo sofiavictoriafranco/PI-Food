@@ -144,11 +144,12 @@ function Home () {
         <div className={styles.select}>
         
         <select  id='origin-select' name="origin" onChange={filter} className={styles.options} >
-        <option value="default" selected>Selecciona un origen</option>
+        <option value="default" >Selecciona un origen</option>
           <option value="Api">Api</option>
           <option value="BDD">BDD</option>
         </select>
         <select name="diets" onChange={filter} className={styles.options}>
+        <option value="default" >Selecciona una dieta</option>
           {diets?.map((d) => {
             return (
               <option value={d.title} key={d.id}>
@@ -156,14 +157,17 @@ function Home () {
               </option>
             );
           })}
+          
         </select>
 
         
         <select name= "Alfabetico" onChange={order} className={styles.options}>
+        <option value="default" >Selecciona por orden alfabetico</option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </select>
         <select name= "HealthScore" onChange={order} className={styles.options}>
+        <option value="default" >Selecciona por orden de health score</option>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
         </select>

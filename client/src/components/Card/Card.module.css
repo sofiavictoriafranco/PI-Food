@@ -1,6 +1,11 @@
 .card{
-    border: 1px solid black;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 10px;
+    border: 1px solid white;
+    width: 400px;
+    height: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgb(216, 189, 189);
+    background-color: #ac7564;
+    opacity: 0.8;
+    justify-content: center;
 }
+
