@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
 import { getRecipeById } from "../../redux/actions"
-import { useEffect, useState } from "react"
-import CardsContainer from "../../components/CardsContainer/CardsContainer"
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import style from './Detail.module.css'
@@ -24,9 +23,10 @@ const Detail = () => {
 
  
 
-    
-   const detailSummary = detail.summary
-   const summary = detailSummary.replace(/<[^>]*>/g, "")
+
+    const detailSummary = detail && detail.summary ? detail.summary : "";
+    const summary = detailSummary.replace(/<[^>]*>/g, "");
+   
    
 
 
