@@ -28,6 +28,7 @@ const Form = () => {
         summary:'',
         healthScore: 0,
         instructions:'',
+        image:'',
         recipeDiets:[]
 
     })
@@ -38,6 +39,7 @@ const Form = () => {
         summary:'',
         healthScore: 0,
         instructions:'',
+        image:'',
         recipeDiets: []
 
     })
@@ -47,6 +49,7 @@ const Form = () => {
         const errors = {}
        
         const titleRegex = /^[A-Za-z\s]+$/
+        const url = /(https?:\/\/.*\.(?:png|jpeg|jpg))/i;
       
       
          if (!titleRegex.test(form.title) || form.title === '') {
@@ -74,6 +77,10 @@ const Form = () => {
         if(isNaN(form.healthScore)){
             errors.healthScore = 'Debe ser un numero'
         }
+
+        if (!url.test(form.image)) {
+            errors.image = "Debe ser una URL";
+          }
 
 
         
@@ -141,6 +148,7 @@ const Form = () => {
             !errors.summary &&
             !errors.healthScore &&
             !errors.instructions &&
+            
             diet.length >= 1
             ) {
               dispatch(createRecipe(form));
@@ -185,6 +193,13 @@ const Form = () => {
                 <label className={style.label} >Instructions </label>
                 <input type='text' value={form.instructions} onChange={changeHandler} name="instructions"/>
                 <span>{errors.instructions}</span>
+                 
+            </div>
+
+            <div className={style.div2}>
+                <label className={style.label} >Image </label>
+                <input type='text' value={form.image} onChange={changeHandler} name="image"/>
+                <span>{errors.image}</span>
                  
             </div>
 

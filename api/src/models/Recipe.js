@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
 
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue:'https://www.elmueble.com/medio/2023/03/16/recetas-sanas_f45fa664_230316141534_900x900.jpg',
+      defaultValue:'https://spoonacular.com/recipeImages/633942-556x370.jpg',
 
     
 

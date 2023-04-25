@@ -25,7 +25,8 @@ const Detail = () => {
  
 
     
-
+   const detailSummary = detail.summary
+   const summary = detailSummary.replace(/<[^>]*>/g, "")
    
 
 
@@ -36,7 +37,7 @@ const Detail = () => {
 
             <h1>Title: {detail.title}</h1>
             <h2>Id: {detail.id}</h2>
-            <h2>Summary: {detail.summary}</h2>
+            <h2>Summary: {summary} </h2>
             <h2>Health Score: {detail.healthScore}</h2>
             <h2>Instructions: {detail.instructions}</h2>
             <h2>diets: {detail.diets}</h2>
