@@ -29,6 +29,7 @@ const getRecipeByName = async(name) => {
       summary: e.summary,
       healthScore: e.healthScore,
       instructions: e.analyzedInstructions,
+      diets: e.diets,
       created: false,
       
 

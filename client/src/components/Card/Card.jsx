@@ -3,7 +3,7 @@ import style from './Card.module.css'
 
 const Card = (props) => {
 
-   const diets = props.diets.join(', ');
+   
 
 
     return(
@@ -12,7 +12,7 @@ const Card = (props) => {
             <Link to={`/detail/${props.id}`} className={style.myButton}>
             
             <p>Title: {props.title}</p>
-            <p>Diets: {diets}</p>
+            <p>Diets: {props.diets.join(', ')}</p>
             <img src={props.image} alt={props.title} className={style.img}/>
             </Link>
 
