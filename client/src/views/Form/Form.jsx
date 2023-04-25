@@ -208,6 +208,7 @@ const Form = () => {
 
         <label  >Diets: </label>
         <select  onChange={dietHandler} name="diets">
+        <option value="default" >Selecciona las dietas</option>
           {mapDiets()}
         </select >
         

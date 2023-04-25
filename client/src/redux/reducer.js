@@ -67,6 +67,9 @@ function reducer(state= initialState, {type, payload}) {
           }
         }else{
             alert('No hay recetas con ese origen')
+            return {
+                ... state
+            }
         }
 
 
