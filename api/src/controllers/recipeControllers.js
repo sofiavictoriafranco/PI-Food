@@ -101,6 +101,11 @@ const getAllRecipes = async() => {
 
 const createRecipe = async(title, image, summary, healthScore, instructions, recipeDiets) => {
 
+  if (!image) {
+    image = Recipe.rawAttributes.image.defaultValue;
+  }
+
+
     const newRecipe = await  Recipe.create({title, image, summary, healthScore, instructions, recipeDiets})
     return newRecipe
 

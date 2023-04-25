@@ -13,7 +13,7 @@ const Card = (props) => {
             
             <p>Title: {props.title}</p>
             <p>Diets: {diets}</p>
-            <img src={props.image} alt={props.title}/>
+            <img src={props.image} alt={props.title} className={style.img}/>
             </Link>
 
         </div>
