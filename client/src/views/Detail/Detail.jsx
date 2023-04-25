@@ -26,17 +26,23 @@ const Detail = () => {
  
 
 
-    
+    console.log(detail.diets)
 
     
-    
+    if(Array.isArray(detail.diets) && typeof(detail.diets[0]) !== 'string'){
 
+        
+
+        detail.diets = detail.diets.map(o => o.title) 
+
+    }
+   
     
     
    
    
 
-console.log(detail)
+
 
 
     return(
