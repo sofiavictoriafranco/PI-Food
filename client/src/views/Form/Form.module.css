@@ -1,7 +1,7 @@
 .div{
     background-color:  #daa494;
     margin-top: 0px;
-    height: 800px;
+    height: 100%;
     
 }
 
@@ -51,7 +51,8 @@
         min-height: 20px;
         text-decoration: none; 
         text-align: center;
-        opacity: 0.8
+        opacity: 0.8;
+        font-family: Arial, Helvetica, sans-serif;
       
     
   }
