@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
 }
 .landing{
-    background-color:  #daa494 ;
+    background-color:  #bba79f ;
     opacity: 0.8;
     justify-content: center;
     top: 0%;
@@ -23,11 +23,11 @@
     text-align: center;
     box-shadow: 0 0 15px rgb(216, 189, 189);
     border-radius: 15%;
-    color: #4b332c;
+    color:  #685c57;
 }
 
 .myButton{
-    background-color: #ac7564;
+    background-color:  #83746e;
     color: white;
     padding: 12px 24px;
     border: none;
