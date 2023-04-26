@@ -13,11 +13,6 @@ function Home () {
 
     const dispatch = useDispatch()
     
-    
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage] = useState(9);
-
     useEffect(()=>{
         dispatch(getAllRecipes())
     },[dispatch])
@@ -102,10 +97,14 @@ function Home () {
 
     }
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recipesPerPage] = useState(9);
+
     // Get current recipes
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipes = filtered.length > 0 ? filtered : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentRecipes = filtered.length > 0 ? filtered.slice(indexOfFirstRecipe, indexOfLastRecipe)
+  : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
