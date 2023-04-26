@@ -27,6 +27,9 @@ function Home () {
     const diets = useSelector(state => state.diets)
     let filtered = useSelector(state => state.filtered)
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recipesPerPage] = useState(9);
+
     
 
 
@@ -50,6 +53,8 @@ function Home () {
         } else {
           dispatch(getByName(searchString))
         }
+
+        setCurrentPage(1)
     
     }
 
@@ -65,6 +70,7 @@ function Home () {
         }else{
             dispatch(filterByDiets(value))
         }
+        setCurrentPage(1)
     }
 
 
@@ -79,14 +85,14 @@ function Home () {
       }else{
         dispatch(orderByHealthScore(value))
     }
+    setCurrentPage(1)
     }
 
 
 
 
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage] = useState(9);
+   
 
     
   const indexOfLastRecipe = currentPage * recipesPerPage;
