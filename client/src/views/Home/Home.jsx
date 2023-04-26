@@ -18,7 +18,7 @@ function Home () {
 
     useEffect(()=>{
         dispatch(getAllRecipes())
-    },[dispatch, filtered])
+    },[dispatch])
 
     useEffect(()=>{
         dispatch(getDiets())
@@ -30,6 +30,27 @@ function Home () {
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage] = useState(9);
     const [searchString, setSearchString] = useState('')
+
+
+    const indexOfLastRecipe = currentPage * recipesPerPage;
+    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+    let currentRecipes = filtered.length > 0 ? filtered.slice(indexOfFirstRecipe, indexOfLastRecipe)
+    : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  
+    
+    const paginate = (pageNumber) => {
+      if(currentRecipes.length > 0){
+        setCurrentPage(pageNumber);
+      }else{
+        setCurrentPage(1)
+      }
+    }
+   
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  
     
 
   
@@ -78,16 +99,25 @@ function Home () {
 
       const name = event.target.name
       const value = event.target.value
+
+      
+
       if(name === 'Alfabetico'){
-      dispatch(orderByAlphabet(value))
-      setCurrentPage(1)
+       dispatch(orderByAlphabet(value))
+     
+      
+    
       }else{
-        dispatch(orderByHealthScore(value))
-        setCurrentPage(1)
+       dispatch(orderByHealthScore(value))
+        
+    }
+
+    setCurrentPage(1)
 
     }
-    
-    }
+
+    console.log(currentPage)
+    console.log(filtered)
 
 
 
@@ -95,20 +125,7 @@ function Home () {
 
    
 
-    const indexOfLastRecipe = currentPage * recipesPerPage;
-    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-    const currentRecipes = filtered.length > 0 ? filtered.slice(indexOfFirstRecipe, indexOfLastRecipe)
-    : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-  
-    
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  
-   
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
-      pageNumbers.push(i);
-    }
-  
+ 
 
 
   
@@ -133,7 +150,7 @@ function Home () {
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
         <h1 className={styles.title}>Home</h1>
         <div>
-        <Pagination pageNumbers={pageNumbers} paginate={paginate} />
+        <Pagination pageNumbers={pageNumbers} paginate={paginate} currentPage={currentPage} />
         </div>
         <div className={styles.select}>
         

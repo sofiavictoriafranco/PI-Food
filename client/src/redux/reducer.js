@@ -141,22 +141,27 @@ function reducer(state= initialState, {type, payload}) {
            orderalphabet = payload === "A-Z"? state.filtered.sort((a, b) => a.title.localeCompare(b.title))
                         : state.filtered.sort((a, b) => b.title.localeCompare(a.title))
 
-        return{
-            ... state,
-            filtered: orderalphabet,
-            
-        }
+        
 
         }else{
            orderalphabet = payload === "A-Z"? state.recipes.sort((a, b) => a.title.localeCompare(b.title))
                      : state.recipes.sort((a, b) => b.title.localeCompare(a.title))
 
+           
+
+
+        }
+
+
+        if(orderalphabet.length > 0){
             return{
                 ... state,
-                filtered: orderalphabet,
+                filtered: orderalphabet
             }
-
-
+        }else{
+            return{
+                ... state
+            }
         }
 
 
