@@ -61,6 +61,8 @@ function reducer(state= initialState, {type, payload}) {
               if(payload === 'BDD' && isNaN(r.id)){
                 return true;
               }
+
+              
            
           })
         }else{
@@ -124,20 +126,26 @@ function reducer(state= initialState, {type, payload}) {
 
         case ORDER_BY_ALPHABET:
 
-        let order
+        
 
         if(state.filtered.length > 0){
-            order =  payload === "A-Z"? state.filtered.sort((a, b) => a.title.localeCompare(b.title))
+            payload === "A-Z"? state.filtered.sort((a, b) => a.title.localeCompare(b.title))
                         : state.filtered.sort((a, b) => b.title.localeCompare(a.title))
 
         return{
             ... state,
-            filtered: order,
+            
         }
 
         }else{
-            order =  payload === "A-Z"? state.recipes.sort((a, b) => a.title.localeCompare(b.title))
+            payload === "A-Z"? state.recipes.sort((a, b) => a.title.localeCompare(b.title))
                      : state.recipes.sort((a, b) => b.title.localeCompare(a.title))
+
+            return{
+                ... state,
+            }
+
+
         }
 
 
@@ -172,15 +180,7 @@ function reducer(state= initialState, {type, payload}) {
 
 
 
-        // state.filtered = [... state.recipes]
-            
-        //     return {
-        //           ...state,
-        //           filtered:
-        //             payload === "Ascendente"
-        //               ? state.filtered.sort((a, b) => (a.healthScore < b.healthScore ? -1 : 1))
-        //               : state.filtered.sort((a, b) => (a.healthScore > b.healthScore ? -1 : 1)),
-        //         };
+    
 
       
        
