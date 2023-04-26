@@ -37,7 +37,7 @@ const Form = () => {
 
         title:'',
         summary:'',
-        healthScore: 0,
+        healthScore: '',
         instructions:'',
         image:'',
         recipeDiets: []
@@ -74,13 +74,14 @@ const Form = () => {
          
         } 
 
-        if(isNaN(form.healthScore)){
-            errors.healthScore = 'Debe ser un numero'
-        }
 
         if (!url.test(form.image)) {
             errors.image = "Debe ser una URL";
           }
+
+        if(form.healthScore <= 0){
+            errors.healthScore = 'Debe ser un numero mayor a 0'
+        }
 
 
         
