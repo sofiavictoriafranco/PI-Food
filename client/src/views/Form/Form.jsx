@@ -135,8 +135,7 @@ const Form = () => {
         if(event.target.value){
           setDiet([...diet, event.target.value]);
           setForm({...form, recipeDiets: [...diet, event.target.value]})
-         
-          
+        
         }
       };
 
@@ -212,6 +211,14 @@ const Form = () => {
         <option value="default" >Selecciona las dietas</option>
           {mapDiets()}
         </select >
+
+        {diet.map((d) => {
+
+            return (
+                <h4 className={style.diets}>{d}</h4>
+            )
+
+        })}
         
         
             </div>
