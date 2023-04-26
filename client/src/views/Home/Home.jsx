@@ -12,10 +12,13 @@ import styles from './Home.module.css'
 function Home () {
 
     const dispatch = useDispatch()
-    
+    const recipes = useSelector(state => state.recipes)
+    const diets = useSelector(state => state.diets)
+    let filtered = useSelector(state => state.filtered)
+
     useEffect(()=>{
         dispatch(getAllRecipes())
-    },[dispatch])
+    },[dispatch, filtered])
 
     useEffect(()=>{
         dispatch(getDiets())
@@ -23,17 +26,9 @@ function Home () {
 
 
  
-    const recipes = useSelector(state => state.recipes)
-    const diets = useSelector(state => state.diets)
-    let filtered = useSelector(state => state.filtered)
-
+    
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage] = useState(9);
-
-    
-
-
-   
     const [searchString, setSearchString] = useState('')
     
 
@@ -61,6 +56,9 @@ function Home () {
 
 
 
+
+
+
     const filter = (event) => {
 
         const name = event.target.name
@@ -82,10 +80,13 @@ function Home () {
       const value = event.target.value
       if(name === 'Alfabetico'){
       dispatch(orderByAlphabet(value))
+      setCurrentPage(1)
       }else{
         dispatch(orderByHealthScore(value))
+        setCurrentPage(1)
+
     }
-    setCurrentPage(1)
+    
     }
 
 
@@ -94,20 +95,20 @@ function Home () {
 
    
 
-    
-  const indexOfLastRecipe = currentPage * recipesPerPage;
-  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
-  const currentRecipes = filtered.length > 0 ? filtered.slice(indexOfFirstRecipe, indexOfLastRecipe)
-  : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
-
+    const indexOfLastRecipe = currentPage * recipesPerPage;
+    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+    const currentRecipes = filtered.length > 0 ? filtered.slice(indexOfFirstRecipe, indexOfLastRecipe)
+    : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
   
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
- 
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
-    pageNumbers.push(i);
-  }
+    
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
+   
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  
 
 
   
