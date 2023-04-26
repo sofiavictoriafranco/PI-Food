@@ -53,49 +53,37 @@ function Home () {
     
     }
 
+
+
+
     const filter = (event) => {
 
         const name = event.target.name
         const value = event.target.value
-
-       
-
         if(name === 'origin'){
-
             dispatch(filterByOrigin(value))
-
         }else{
-
             dispatch(filterByDiets(value))
-
-
-
         }
-
-
     }
+
+
+
 
     const order = (event) => {
 
       const name = event.target.name
       const value = event.target.value
-
-      
-
-
       if(name === 'Alfabetico'){
-
-        dispatch(orderByAlphabet(value))
-
-    }else{
-
+      dispatch(orderByAlphabet(value))
+      }else{
         dispatch(orderByHealthScore(value))
-
-
-
+    }
     }
 
-    }
+
+
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage] = useState(9);
@@ -144,11 +132,14 @@ function Home () {
         
         <select  id='origin-select' name="origin" onChange={filter} className={styles.options} >
         <option value="default" >Selecciona un origen</option>
+        <option value= "All">All</option>
           <option value="Api">Api</option>
-          <option value="BDD">BDD</option>
+          <option value= "BDD">BDD</option>
+          
         </select>
         <select name="diets" onChange={filter} className={styles.options}>
         <option value="default" >Selecciona una dieta</option>
+        <option value= "All">All</option>
           {diets?.map((d) => {
             return (
               <option value={d.title} key={d.id}>

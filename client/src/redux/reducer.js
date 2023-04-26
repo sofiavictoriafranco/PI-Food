@@ -52,7 +52,8 @@ function reducer(state= initialState, {type, payload}) {
         let filtered
         
         if(state.filtered.length > 0){
-            filtered = state.filtered.filter((r) => {
+           filtered = payload === 'All'? state.recipes :
+            state.filtered.filter((r) => {
             
             if(payload === 'Api' && !(isNaN(r.id))){
               return true;
@@ -63,10 +64,13 @@ function reducer(state= initialState, {type, payload}) {
               }
 
               
+
+              
            
           })
         }else{
-            filtered = state.recipes.filter((r) => {
+            filtered = payload === 'All'? state.recipes :
+            state.recipes.filter((r) => {
             
                 if(payload === 'Api' && !(isNaN(r.id))){
                   return true;
@@ -75,6 +79,8 @@ function reducer(state= initialState, {type, payload}) {
                   if(payload === 'BDD' && isNaN(r.id)){
                     return true;
                   }
+
+                
                
               })
     
@@ -99,11 +105,14 @@ function reducer(state= initialState, {type, payload}) {
         let filteredDiets
 
         if(state.filtered.length > 0){
-             filteredDiets = state.filtered.filter(
+            filteredDiets = payload === 'All'? state.recipes :
+            state.filtered.filter(
                 (r) => r.diets.includes(payload)
               );
+             
   
         }else{
+            filteredDiets = payload === 'All'? state.recipes :
              filteredDiets = state.recipes.filter(
               (r) => r.diets.includes(payload)
             );
