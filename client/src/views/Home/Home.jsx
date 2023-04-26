@@ -100,16 +100,16 @@ function Home () {
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage] = useState(9);
 
-    // Get current recipes
+    
   const indexOfLastRecipe = currentPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = filtered.length > 0 ? filtered.slice(indexOfFirstRecipe, indexOfLastRecipe)
   : recipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
 
-  // Change page
+  
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Calculate page numbers
+ 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(recipes.length / recipesPerPage); i++) {
     pageNumbers.push(i);
@@ -122,7 +122,7 @@ function Home () {
  
 
   function handleOriginChange(event) {
-    // Recarga la página actual en la misma ruta
+    
     const { location } = window;
     location.reload();
   }

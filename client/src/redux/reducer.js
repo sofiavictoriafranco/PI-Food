@@ -48,7 +48,11 @@ function reducer(state= initialState, {type, payload}) {
 
         case FILTER_BY_ORIGIN:
 
-        const filtered = state.recipes.filter((r) => {
+        
+        let filtered
+        
+        if(state.filtered.length > 0){
+            filtered = state.filtered.filter((r) => {
             
             if(payload === 'Api' && !(isNaN(r.id))){
               return true;
@@ -59,6 +63,20 @@ function reducer(state= initialState, {type, payload}) {
               }
            
           })
+        }else{
+            filtered = state.recipes.filter((r) => {
+            
+                if(payload === 'Api' && !(isNaN(r.id))){
+                  return true;
+                }
+    
+                  if(payload === 'BDD' && isNaN(r.id)){
+                    return true;
+                  }
+               
+              })
+    
+        }
 
           if(filtered.length > 0){
           return {
@@ -75,9 +93,20 @@ function reducer(state= initialState, {type, payload}) {
 
 
         case FILTER_BY_DIETS:
-            const filteredDiets = state.recipes.filter(
+
+        let filteredDiets
+
+        if(state.filtered.length > 0){
+             filteredDiets = state.filtered.filter(
+                (r) => r.diets.includes(payload)
+              );
+  
+        }else{
+             filteredDiets = state.recipes.filter(
               (r) => r.diets.includes(payload)
             );
+
+        }
 
             if(filteredDiets.length > 0){
             return {
@@ -95,28 +124,63 @@ function reducer(state= initialState, {type, payload}) {
 
         case ORDER_BY_ALPHABET:
 
-        state.filtered = [... state.recipes]
+        let order
 
-            return {
-                ...state,
-                filtered:
-                  payload === "A-Z"
-                    ? state.filtered.sort((a, b) => a.title.localeCompare(b.title))
-                    : state.filtered.sort((a, b) => b.title.localeCompare(a.title)),
-              };
+        if(state.filtered.length > 0){
+            order =  payload === "A-Z"? state.filtered.sort((a, b) => a.title.localeCompare(b.title))
+                        : state.filtered.sort((a, b) => b.title.localeCompare(a.title))
+
+        return{
+            ... state,
+            filtered: order,
+        }
+
+        }else{
+            order =  payload === "A-Z"? state.recipes.sort((a, b) => a.title.localeCompare(b.title))
+                     : state.recipes.sort((a, b) => b.title.localeCompare(a.title))
+        }
 
 
         case ORDER_BY_HEALTHSCORE:
 
-        state.filtered = [... state.recipes]
+
+        let orderhealthscore
+
+        if(state.filtered.length > 0){
+            orderhealthscore = payload === "Ascendente"
+                        ? state.filtered.sort((a, b) => (a.healthScore < b.healthScore ? -1 : 1))
+                       : state.filtered.sort((a, b) => (a.healthScore > b.healthScore ? -1 : 1))
+
+        return {
+            ... state,
+            filtered: orderhealthscore,
+        }               
+        }else{
+
+            orderhealthscore = payload === "Ascendente"
+                        ? state.recipes.sort((a, b) => (a.healthScore < b.healthScore ? -1 : 1))
+                       : state.recipes.sort((a, b) => (a.healthScore > b.healthScore ? -1 : 1))
+
+        return {
+            ... state,
+            filtered: orderhealthscore,
+        }               
+
+        }
+
+
+
+
+
+        // state.filtered = [... state.recipes]
             
-            return {
-                  ...state,
-                  filtered:
-                    payload === "Ascendente"
-                      ? state.filtered.sort((a, b) => (a.healthScore < b.healthScore ? -1 : 1))
-                      : state.filtered.sort((a, b) => (a.healthScore > b.healthScore ? -1 : 1)),
-                };
+        //     return {
+        //           ...state,
+        //           filtered:
+        //             payload === "Ascendente"
+        //               ? state.filtered.sort((a, b) => (a.healthScore < b.healthScore ? -1 : 1))
+        //               : state.filtered.sort((a, b) => (a.healthScore > b.healthScore ? -1 : 1)),
+        //         };
 
       
        
