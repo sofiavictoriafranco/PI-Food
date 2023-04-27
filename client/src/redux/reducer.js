@@ -49,11 +49,11 @@ function reducer(state= initialState, {type, payload}) {
         case FILTER_BY_ORIGIN:
 
         
-        let filtered
+       
         
-        if(state.filtered.length > 0){
-           filtered = payload === 'All'? state.recipes :
-            state.filtered.filter((r) => {
+        
+           const filtered = payload === 'All'? state.recipes :
+            state.recipes.filter((r) => {
             
             if(payload === 'Api' && !(isNaN(r.id))){
               return true;
@@ -62,29 +62,11 @@ function reducer(state= initialState, {type, payload}) {
               if(payload === 'BDD' && isNaN(r.id)){
                 return true;
               }
+            }
 
-              
-
-              
-           
-          })
-        }else{
-            filtered = payload === 'All'? state.recipes :
-            state.recipes.filter((r) => {
-            
-                if(payload === 'Api' && !(isNaN(r.id))){
-                  return true;
-                }
+            )
     
-                  if(payload === 'BDD' && isNaN(r.id)){
-                    return true;
-                  }
-
-                
-               
-              })
-    
-        }
+        
 
           if(filtered.length > 0){
           return {
