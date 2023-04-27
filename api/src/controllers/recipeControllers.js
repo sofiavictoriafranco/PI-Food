@@ -7,7 +7,7 @@ const {API_KEY} = process.env
 
 const getRecipeByName = async(name) => {
 
-  const recipeBDD = await Recipe.findAll({
+  let recipeBDD = await Recipe.findAll({
     where: 
     {title: {
 
@@ -16,6 +16,19 @@ const getRecipeByName = async(name) => {
     }
     
     }})
+
+    recipeBDD = recipeBDD.map( e => ({
+
+      id: e.id,
+      title: e.title,
+      image: e.image,
+      summary: e.summary,
+      healthScore: e.healthScore,
+      instructions: e.analyzedInstructions,
+      diets: e.recipeDiets,
+      created: true,
+
+    }))
 
   let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${name}&addRecipeInformation=true`)).data.results
 
