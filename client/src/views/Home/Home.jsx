@@ -149,9 +149,7 @@ function Home () {
         <div className={styles.home}>
         <NavBar handleChange={handleChange} handleSubmit={handleSubmit} />
         <h1 className={styles.title}>Home</h1>
-        <div>
-        <Pagination pageNumbers={pageNumbers} paginate={paginate} currentPage={currentPage} />
-        </div>
+        
         <div className={styles.select}>
         
         <select  id='origin-select' name="origin" onChange={filter} className={styles.options} >
@@ -201,7 +199,9 @@ function Home () {
       
 
      
-    
+    <div>
+        <Pagination pageNumbers={pageNumbers} paginate={paginate} currentPage={currentPage} />
+        </div>
 
 
     </div>
