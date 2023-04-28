@@ -121,23 +121,51 @@ const Form = () => {
 
 
     const mapDiets = () => {
-        const filtered = diets.filter((d) => !diet.includes(d.title));
-        return filtered.map((d, i) => {
+       
+        return diets.map((d, i) => {
+            const checked = diet.includes(d.title);
           return (
-              <option value={d.title} key={i}>
-              {d.title}
-            </option>
+            <div key={i}>
+              <input
+                type="checkbox"
+                id={d.title}
+                name={d.title}
+                value={d.title}
+                onChange={dietHandler}
+                checked={checked}
+              />
+              <label htmlFor={d.title}>{d.title}</label>
+            </div>
           );
         });
       };
 
       const dietHandler = (event) => {
-        if(event.target.value){
-          setDiet([...diet, event.target.value]);
-          setForm({...form, recipeDiets: [...diet, event.target.value]})
+        const dietValue = event.target.value;
+        const isChecked = event.target.checked;
+      
+        if (isChecked) {
+          
+          setDiet([...diet, dietValue]);
+
+          setForm({...form, recipeDiets: [...diet, dietValue]})
+      
+         
         
+        } else {
+         
+          const updatedDiet = diet.filter((d) => d !== dietValue);
+
+          setDiet(updatedDiet);
+      
+          
+          setForm({
+            ... form,
+            recipeDiets: form.recipeDiets.filter((d) => d !== dietValue),
+        })
         }
       };
+      
 
 
     const submitHandler = async (event) => {
@@ -207,18 +235,9 @@ const Form = () => {
 
 
         <label  >Diets: </label>
-        <select  onChange={dietHandler} name="diets">
-        <option value="default" >Selecciona las dietas</option>
+      
           {mapDiets()}
-        </select >
-
-        {diet.map((d) => {
-
-            return (
-                <h4 className={style.diets}>{d}</h4>
-            )
-
-        })}
+      
         
         
             </div>
