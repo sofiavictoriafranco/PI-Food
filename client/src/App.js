@@ -4,6 +4,7 @@ import Landing from './views/Landing/Landing';
 import Detail from './views/Detail/Detail';
 import Form from './views/Form/Form';
 import NavBar from './components/NavBar/NavBar';
+import PageNotFound from './views/PageNotFound/PageNotFound';
 
 
 function App() {
@@ -14,13 +15,14 @@ function App() {
   return (
     <div>
 
-      <div>{location.pathname !== '/' && location.pathname !== '/home' && <NavBar/>}</div>
+{(location.pathname === '/create' || location.pathname.startsWith('/detail/')) && <NavBar/>}
 
     <Routes>
-      <Route  path="/" element={<Landing/>} />
+      <Route  exact path="/" element={<Landing/>} />
       <Route exact path='/home' element={<Home/>} />
       <Route exact path="/detail/:idRecipe" element={<Detail/>} />
       <Route exact path="/create" element={<Form/>} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
 
       
