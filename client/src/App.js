@@ -17,8 +17,8 @@ function App() {
       <div>{location.pathname !== '/' && location.pathname !== '/home' && <NavBar/>}</div>
 
     <Routes>
-      <Route exact path="/" element={<Landing/>} />
-      <Route path='/home' element={<Home/>} />
+      <Route  path="/" element={<Landing/>} />
+      <Route exact path='/home' element={<Home/>} />
       <Route exact path="/detail/:idRecipe" element={<Detail/>} />
       <Route exact path="/create" element={<Form/>} />
     </Routes>
