@@ -60,17 +60,17 @@ const Form = () => {
           
         
         
-          if (!titleRegex.test(form.summary) || form.summary === '') {
+          if (form.summary === '') {
           
-            errors.summary = "Debe contener solo letras y espacios, no puede estar vacio"
+            errors.summary = "No puede estar vacio"
          
         } 
         
       
         
-        if (!titleRegex.test(form.instructions) || form.instructions === '') {
+        if (form.instructions === '') {
           
-            errors.instructions = "Debe contener solo letras y espacios, no puede estar vacio"
+            errors.instructions = 'No puede estar vacio'
          
         } 
 
