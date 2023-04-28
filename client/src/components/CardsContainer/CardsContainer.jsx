@@ -17,7 +17,8 @@ const CardsContainer = (props) => {
                     id={e.id}
                     title= {e.title}
                     image= {e.image}
-                    diets= {e.diets}
+                    diets= {e.diets? e.diets : e.recipeDiets}
+                    
 
                     />
 

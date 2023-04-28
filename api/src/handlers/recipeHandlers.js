@@ -28,9 +28,11 @@ const createRecipeHandler = async(req, res) => {
 
         const newRecipe = await createRecipe(title, image, summary, healthScore, instructions, recipeDiets)
 
-        let diet = await Diets.findAll({where: {title: recipeDiets[0]}})
-        diet = diet.map(d => d.id)
-        await newRecipe.addDiet(diet)
+        for (const dietTitle of recipeDiets) {
+            let diet = await Diets.findAll({where: {title: dietTitle}})
+            diet = diet.map(d => d.id)
+            await newRecipe.addDiet(diet)
+        }
 
         res.status(201).json(newRecipe)
 
