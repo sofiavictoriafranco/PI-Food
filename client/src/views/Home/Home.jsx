@@ -39,11 +39,10 @@ function Home () {
   
     
     const paginate = (pageNumber) => {
-      if (currentRecipes.length > 0 && currentRecipes[(pageNumber - 1) * recipesPerPage]) {
-        setCurrentPage(pageNumber);
-      } else {
-        setCurrentPage(1);
-      }
+     
+
+      setCurrentPage(pageNumber)
+
     }
     
     const pageNumbers = [];
