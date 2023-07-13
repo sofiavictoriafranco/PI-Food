@@ -7,7 +7,7 @@ const getAllDietsController = async() => {
     
         const diet = [];
         const response = await axios(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`
+            `https://api.spoonacular.com/recipes/complexSearch?apiKey=d3a8a7e8b0aa45feaaf0395239724d20&addRecipeInformation=true`
           )
           const diets = response.data.results.map(e => e.diets);
         

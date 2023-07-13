@@ -14,7 +14,7 @@ export const GO_BACK = 'GO_BACK'
 export function getAllRecipes() {
 
     return (dispatch) => {
-        return axios('http://localhost:3001/recipes/')
+        return axios('/recipes/')
         .then(res => dispatch({
             type: GET_RECIPES,
             payload: res.data
@@ -30,7 +30,7 @@ export function getAllRecipes() {
 
 export function getByName (name){
     return (dispatch) => {
-        return axios(`http://localhost:3001/recipes?name=${name}`)
+        return axios(`/recipes?name=${name}`)
         .then(res => dispatch({
             type: GET_BY_NAME,
             payload: res.data
@@ -45,7 +45,7 @@ export function getByName (name){
 
 export function getRecipeById(idRecipe) {
     return(dispatch) => {
-        return axios(`http://localhost:3001/recipes/${idRecipe}`)
+        return axios(`/recipes/${idRecipe}`)
         .then(res => dispatch({
             type: GET_RECIPEID,
             payload: res.data
@@ -62,7 +62,7 @@ export function getRecipeById(idRecipe) {
 
   export const getDiets = () => {
     return(dispatch) => {
-        return axios("http://localhost:3001/diets")
+        return axios("/diets")
         .then(res => dispatch({
             type: GET_DIETS,
             payload :res.data
@@ -83,7 +83,7 @@ export function getRecipeById(idRecipe) {
   export const createRecipe = (form) => {
 
     return(dispatch) => {
-        return axios.post('http://localhost:3001/recipes/', form)
+        return axios.post('/recipes/', form)
         .then(res => dispatch({
             type: CREATE_RECIPE,
             payload :res.data

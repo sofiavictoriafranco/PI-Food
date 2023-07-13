@@ -5,6 +5,8 @@ import Detail from './views/Detail/Detail';
 import Form from './views/Form/Form';
 import NavBar from './components/NavBar/NavBar';
 import PageNotFound from './views/PageNotFound/PageNotFound';
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:3001/';
 
 
 function App() {

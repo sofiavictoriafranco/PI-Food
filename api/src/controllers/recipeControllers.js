@@ -30,7 +30,7 @@ const getRecipeByName = async(name) => {
 
     }))
 
-  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${name}&addRecipeInformation=true`)).data.results
+  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=d3a8a7e8b0aa45feaaf0395239724d20&query=${name}&addRecipeInformation=true`)).data.results
 
   recipeApi = recipeApi.map( e => (
     
@@ -87,7 +87,7 @@ const getAllRecipes = async() => {
     }
   })
 
-  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&apiKey=${API_KEY}&addRecipeInformation=true`)).data.results
+  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?number=100&apiKey=d3a8a7e8b0aa45feaaf0395239724d20&addRecipeInformation=true`)).data.results
 
   recipeApi = recipeApi.map( e => (
     
@@ -130,7 +130,7 @@ const createRecipe = async(title, image, summary, healthScore, instructions, rec
 const getRecipeById = async(idRecipe, source) => {
 
      if (source === 'api'){
-    let recipe = (await axios.get(`https://api.spoonacular.com/recipes/${idRecipe}/information?apiKey=${API_KEY}`)).data
+    let recipe = (await axios.get(`https://api.spoonacular.com/recipes/${idRecipe}/information?apiKey=d3a8a7e8b0aa45feaaf0395239724d20`)).data
 
     recipe = {
         id: recipe.id,
