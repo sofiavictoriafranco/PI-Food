@@ -30,7 +30,7 @@ const getRecipeByName = async(name) => {
 
     }))
 
-  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}=${name}&addRecipeInformation=true`)).data.results
+  let recipeApi = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&query=${name}&addRecipeInformation=true`)).data.results
 
   recipeApi = recipeApi.map( e => (
     
